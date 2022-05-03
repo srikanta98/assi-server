@@ -36,7 +36,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         await client.connect();
-        const serviceCollection = client.db('geniusCar').collection('service');
+        // const serviceCollection = client.db('geniusCar').collection('service');
         const orderCollection = client.db('geniusCar').collection('order');
         const inventoryCollection = client.db('Assi').collection('inventory');
 
@@ -50,20 +50,20 @@ async function run() {
         })
 
         // SERVICES API
-        app.get('/service', async (req, res) => {
-            const query = {};
-            const cursor = serviceCollection.find(query);
-            const services = await cursor.toArray();
-            res.send(services);
-        });
+        // app.get('/service', async (req, res) => {
+        //     const query = {};
+        //     const cursor = serviceCollection.find(query);
+        //     const services = await cursor.toArray();
+        //     res.send(services);
+        // });
 
-        app.get('/service/:id', async (req, res) => {
-            const id = req.params.id;
-            console.log(id);
-            const query = { _id: ObjectId(id) };
-            const service = await serviceCollection.findOne(query);
-            res.send(service);
-        });
+        // app.get('/service/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     console.log(id);
+        //     const query = { _id: ObjectId(id) };
+        //     const service = await serviceCollection.findOne(query);
+        //     res.send(service);
+        // });
         //inventory
         app.get('/inventory', async (req, res) => {
             const query = {};
@@ -85,40 +85,40 @@ async function run() {
         });
 
         // POST
-        app.post('/service', async (req, res) => {
-            const newService = req.body;
-            const result = await serviceCollection.insertOne(newService);
-            res.send(result);
-        });
+        // app.post('/service', async (req, res) => {
+        //     const newService = req.body;
+        //     const result = await serviceCollection.insertOne(newService);
+        //     res.send(result);
+        // });
 
         // DELETE
-        app.delete('/service/:id', async (req, res) => {
-            const id = req.params.id;
-            const query = { _id: ObjectId(id) };
-            const result = await serviceCollection.deleteOne(query);
-            res.send(result);
-        });
+        // app.delete('/service/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const query = { _id: ObjectId(id) };
+        //     const result = await serviceCollection.deleteOne(query);
+        //     res.send(result);
+        // });
         app.delete('/inventory/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await inventoryCollection.deleteOne(query);
             res.send(result);
         });
-        app.put('/inventory/:id', async (req, res) => {
-            const id = req.params.id;
-            const user = req.body
-            const filter = { _id: ObjectId(id) };
-            const options = { upsert: true };
-            const updatedDoc = {
-                        $set: {
-                            price: user.newProduct,
+        // app.put('/inventory/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const user = req.body
+        //     const filter = { _id: ObjectId(id) };
+        //     const options = { upsert: true };
+        //     const updatedDoc = {
+        //                 $set: {
+        //                     price: user.newProduct,
                             
-                        },
-                    };
-            const result = await user.updateOne(filter, updatedDoc, options);
+        //                 },
+        //             };
+        //     const result = await user.updateOne(filter, updatedDoc, options);
                    
-            res.send(result);
-        });
+        //     res.send(result);
+        // });
         // app.put('/inventory/:id', async(req, res) =>{
         //     const id = req.params.id;
         //     const updatedUser = req.body;
@@ -176,9 +176,9 @@ app.get('/', (req, res) => {
     res.send('Running Genius Serveriiii');
 });
 
-app.get('/hero', (req, res) =>{
-    res.send('Hero meets hero ku')
-})
+// app.get('/hero', (req, res) =>{
+//     res.send('Hero meets hero ku')
+// })
 
 app.listen(port, () => {
     console.log('Listening to port', port);
