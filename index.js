@@ -104,21 +104,21 @@ async function run() {
             const result = await inventoryCollection.deleteOne(query);
             res.send(result);
         });
-        app.put('/inventory/:id', async (req, res) => {
-            const id = req.params.id;
-            const user = req.body
-            const filter = { _id: ObjectId(id) };
-            const options = { upsert: true };
-            const updatedDoc = {
-                        $set: {
-                            price: user.newProduct,
+        // app.put('/inventory/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const user = req.body
+        //     const filter = { _id: ObjectId(id) };
+        //     const options = { upsert: true };
+        //     const updatedDoc = {
+        //                 $set: {
+        //                     price: user.newProduct,
                             
-                        },
-                    };
-            const result = await user.updateOne(filter, updatedDoc, options);
+        //                 },
+        //             };
+        //     const result = await user.updateOne(filter, updatedDoc, options);
                    
-            res.send(result);
-        });
+        //     res.send(result);
+        // });
         // app.put('/inventory/:id', async(req, res) =>{
         //     const id = req.params.id;
         //     const updatedUser = req.body;
