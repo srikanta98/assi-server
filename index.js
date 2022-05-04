@@ -37,7 +37,7 @@ async function run() {
     try {
         await client.connect();
         // const serviceCollection = client.db('geniusCar').collection('service');
-        const orderCollection = client.db('geniusCar').collection('order');
+        const orderCollection = client.db('Assi').collection('order');
         const inventoryCollection = client.db('Assi').collection('inventory');
 
         // AUTH
