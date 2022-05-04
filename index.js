@@ -41,13 +41,13 @@ async function run() {
         const inventoryCollection = client.db('Assi').collection('inventory');
 
         // AUTH
-        // app.post('/login', async (req, res) => {
-        //     const user = req.body;
-        //     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-        //         expiresIn: '1d'
-        //     });
-        //     res.send({ accessToken });
-        // })
+        app.post('/login', async (req, res) => {
+            const user = req.body;
+            const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+                expiresIn: '1d'
+            });
+            res.send({ accessToken });
+        })
 
         // SERVICES API
         // app.get('/service', async (req, res) => {
