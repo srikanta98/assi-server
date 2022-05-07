@@ -104,6 +104,20 @@ async function run() {
             const result = await inventoryCollection.deleteOne(query);
             res.send(result);
         });
+        app.put('/inventory/:id', async(req, res) =>{
+            const id = req.params.id;
+            const updatedUser = req.body.newItemvalue.quantity;
+            const filter = {_id: ObjectId(id)};
+            const options = { upsert: true };
+            const updatedDoc = {
+                $set: {
+                   quantity: updatedUser
+                }
+            };
+        const result = await inventoryCollection.updateOne(filter, updatedDoc, options);
+        res.send(result);
+        });
+
         // app.put('/inventory/:id', async (req, res) => {
         //     const id = req.params.id;
         //     const user = req.body
@@ -121,17 +135,15 @@ async function run() {
         // });
         // app.put('/inventory/:id', async(req, res) =>{
         //     const id = req.params.id;
-        //     const updatedUser = req.body;
+        //     const updatedUser = req.body.newItemValue.quantity;
         //     const filter = {_id: ObjectId(id)};
         //     const options = { upsert: true };
         //     const updatedDoc = {
         //         $set: {
-        //             name: updatedUser.name,
-        //             email: updatedUser.email,
-        //             number: updatedUser.number
+        //            quantity: updatedUser
         //         }
         //     };
-        //     const result = await userCollection.updateOne(filter, updatedDoc, options);
+        //     const result = await inventoryCollection.updateOne(filter, updatedDoc, options);
         //     res.send(result);
 
         // Order Collection API
