@@ -106,7 +106,7 @@ async function run() {
         });
         app.put('/inventory/:id', async(req, res) =>{
             const inventoryId = req.params.id;
-            const updatedUser = req.body.newItemvalue.quantity;
+            const updatedUser = req.body.newItemvalue.price;
             const filter = {_id: ObjectId(inventoryId)};
             const options = { upsert: true };
             const updatedDoc = {
