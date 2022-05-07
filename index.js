@@ -106,12 +106,12 @@ async function run() {
         });
         app.put('/inventory/:id', async(req, res) =>{
             const inventoryId = req.params.id;
-            const updatedUser = req.body.newItemvalue.price;
+            const updatedUser = req.body.newItemvalue.quantity;
             const filter = {_id: ObjectId(inventoryId)};
             const options = { upsert: true };
             const updatedDoc = {
                 $set: {
-                   price: updatedUser
+                   quantity: updatedUser
                 }
             };
         const result = await inventoryCollection.updateOne(filter, updatedDoc, options);
